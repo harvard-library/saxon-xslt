@@ -34,12 +34,16 @@ module Saxon
       # Transform an input document
       # @param [Saxon::XML::Document] document the XML Document object to 
       #   transform
+      # @param [Hash] xsl params to set in the xsl document
       # @return a Saxon::XML::Document object
-      def transform(document)
+      def transform(document, params = {})
         output = S9API::XdmDestination.new
         transformer = @xslt.load
         transformer.setInitialContextNode(document.to_java)
         transformer.setDestination(output)
+        params.each do |k,v|
+          transformer.setParameter(S9API::QName.new(k), S9API::XdmAtomicValue.new(v))
+        end
         transformer.transform
         Saxon::XML::Document.new(output.getXdmNode)
       end

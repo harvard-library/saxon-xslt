@@ -57,7 +57,16 @@ describe Saxon::XSLT do
           expect(xsl.transform(result).to_s.strip).to eq('<piped/>')
         end
       end
+
+      context "the parameterized transform result" do
+        let(:result) { xsl.transform(xml, {"testparam" => "non-default"}) }
+
+        it "contains the parameter value string" do
+          expect(result.to_s.strip).to include("non-default")
+        end
+      end
     end
+
   end
 
   describe "the default processor convenience" do
