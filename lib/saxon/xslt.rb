@@ -34,7 +34,7 @@ module Saxon
       # Transform an input document
       # @param [Saxon::XML::Document] document the XML Document object to
       #   transform
-      # @param [Hash] xsl params to set in the xsl document
+      # @param params [Hash] xsl params to set in the xsl document
       # @return [Saxon::XML::Document] the transformed XML Document
       def transform(document, params = {})
         output = S9API::XdmDestination.new
