@@ -6,6 +6,11 @@
       <xsl:when test="$testparam = 'default'">
         <output/>
       </xsl:when>
+      <xsl:when test="$testparam = 'input'">
+        <output>
+          Select works
+        </output>
+      </xsl:when>
       <xsl:otherwise>
         <output>
           <xsl:value-of select="$testparam" />

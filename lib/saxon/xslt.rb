@@ -44,12 +44,12 @@ module Saxon
         case params
         when Hash
           params.each do |k,v|
-            transformer.setParameter(S9API::QName.new(k), S9API::XdmAtomicValue.new(v))
+            transformer.setParameter(S9API::QName.new(k), document.xpath(v))
           end
         when Array
           params.each_slice(2) do |k,v|
             raise ArgumentError.new("Odd number of values passed as params: #{params}") if v.nil?
-            transformer.setParameter(S9API::QName.new(k), S9API::XdmAtomicValue.new(v))
+            transformer.setParameter(S9API::QName.new(k), document.xpath(v))
           end
         end
         transformer.transform
