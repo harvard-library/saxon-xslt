@@ -18,6 +18,13 @@ module Saxon
       @processor ||= create
     end
 
+    # Allows replacing the default processor
+    # @param [net.sf.saxon.s9api.Processor] s9_processor The Saxon Processor
+    #   instance to make default
+    def self.default=(s9_processor)
+      @processor = s9_processor
+    end
+
     # @param config [File, String, IO] an open File, or string,
     #   containing a Saxon configuration file
     # @return [Saxon::Processor]
